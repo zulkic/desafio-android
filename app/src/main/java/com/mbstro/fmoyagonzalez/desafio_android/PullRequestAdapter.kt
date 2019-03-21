@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import java.text.DateFormat
 
 
@@ -31,7 +32,7 @@ class PullRequestAdapter(private val items: ArrayList<PullRequest>, private val 
             title.text = pullRequest.title
             description.text = pullRequest.body
             username.text = pullRequest.user.login
-            Glide.with(itemView).load(pullRequest.user.avatar_url).into(avatar)
+            Glide.with(itemView).load(pullRequest.user.avatar_url).diskCacheStrategy(DiskCacheStrategy.ALL).into(avatar)
             date.text = DateFormat.getDateInstance().format(pullRequest.updated_at.time)
             setOnClickListener { listener(pullRequest) }
         }

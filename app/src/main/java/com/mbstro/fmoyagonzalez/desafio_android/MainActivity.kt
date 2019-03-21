@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         getHTTPVolley("$PAGE$page")
         viewAdapter = RepoAdapter(repos){
-            Log.w("CLICKED", it.name)
             val intent = Intent(this, PullRequestActivity::class.java)
             intent.putExtra("REPO",it.name)
             intent.putExtra("AUTOR",it.owner.login)

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 
 class RepoAdapter(private val items: ArrayList<Repo>, private val listener: (Repo) -> Unit) : RecyclerView.Adapter<RepoAdapter.ViewHolder>() {
@@ -31,7 +32,7 @@ class RepoAdapter(private val items: ArrayList<Repo>, private val listener: (Rep
             nameRepo.text = repo.name
             description.text = repo.description
             name.text = repo.owner.login
-            Glide.with(itemView).load(repo.owner.avatar_url).into(avatar)
+            Glide.with(itemView).load(repo.owner.avatar_url).diskCacheStrategy(DiskCacheStrategy.ALL).into(avatar)
             forks.text = repo.forks_count.toString()
             starts.text = repo.stargazers_count.toString()
             setOnClickListener { listener(repo) }
